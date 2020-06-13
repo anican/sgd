@@ -18,7 +18,7 @@ def pretrain():
     parser.add_argument('--batch_size', type=int, default=256)
     parser.add_argument('--batch_size_test', type=int, default=256)
     parser.add_argument('--dataset', type=str, default='mnist')
-    parser.add_argument('--epochs', type=int, default=1)
+    parser.add_argument('--epochs', type=int, default=10)
     parser.add_argument('--query_batch_size', type=int, default=1024)
     parser.add_argument('--gamma', type=float, default=0.95)
     parser.add_argument('--hidden_layers', type=int, default=2)
@@ -91,5 +91,6 @@ def query():
 
 
 if __name__ == '__main__':
-    query()
+    pretrain()
+    # query()
 
