@@ -50,7 +50,7 @@ def pretrain():
 
     # model and seed
     torch.manual_seed(seed=seed)
-    model: nn.module = project.configure_model()
+    model = project.configure_model()
     if torch.cuda.device_count() > 1:
         print("using", torch.cuda.device_count(), "gpus!")
         model = nn.DataParallel(model)

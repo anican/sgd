@@ -1,14 +1,10 @@
-from torch.utils.tensorboard import SummaryWriter
-import numpy as np
-import os
-from tqdm import tqdm
+import torch
+from torch import nn
+from models import MLP
+
 
 if __name__ == '__main__':
-    writer = SummaryWriter(log_dir=os.getcwd()+'/logging/test')
-
-    for n_iter in tqdm(range(1000)):
-        writer.add_scalar('Loss/train', np.random.random(), n_iter)
-        writer.add_scalar('Loss/test', np.random.random(), n_iter)
-        writer.add_scalar('Accuracy/train', np.random.random(), n_iter)
-        writer.add_scalar('Accuracy/test', np.random.random(), n_iter)
-    writer.close()
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    model = MLP()
+    model = nn.DataParallel(model)
+    print(model)
