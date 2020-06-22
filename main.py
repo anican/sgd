@@ -13,12 +13,12 @@ from utils import test_model
 def pretrain():
     # argument parsing
     parser = argparse.ArgumentParser()
-    parser.add_argument('--arch', type=str, default='mlp')
+    parser.add_argument('--arch', type=str, default='alexnet')
     parser.add_argument('--batch_norm', type=bool, default=True)
     parser.add_argument('--batch_size', type=int, default=256)
     parser.add_argument('--batch_size_test', type=int, default=256)
-    parser.add_argument('--dataset', type=str, default='mnist')
-    parser.add_argument('--epochs', type=int, default=10)
+    parser.add_argument('--dataset', type=str, default='cifar10')
+    parser.add_argument('--epochs', type=int, default=1)
     parser.add_argument('--query_batch_size', type=int, default=1024)
     parser.add_argument('--gamma', type=float, default=0.95)
     parser.add_argument('--hidden_layers', type=int, default=2)
@@ -65,14 +65,12 @@ def pretrain():
                 print_interval=print_interval,
                 epochs=epochs, train_dataloader=train_dataloader,
                 val_dataloader=val_dataloader, logger=logger)
-    test_results = test_model(model, test_dataloader, device)
-    print(test_results['test_acc'])
     project.save_model(model, optimizer)
     logger.close()
 
 
 def query():
-    model, optimizer, args = restore_model(os.getcwd() + '/checkpoints/mlp/mlp_mnist_ep_1.pt')
+    model, optimizer, args = restore_model(os.getcwd() + '/checkpoints/alexnet/alexnet_cifar10_ep_1.pt')
     seed = args.seed
     project = Project(args)
     project.prepare_data()
