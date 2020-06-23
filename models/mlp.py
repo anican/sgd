@@ -36,7 +36,7 @@ class MLP(nn.Module):
 
 
 def _test():
-    model: nn.Module = MLP(input_size=784, hidden_size=256, num_hidden_layers=1,
+    model: nn.Module = MLP(input_size=784, hidden_size=1024, num_hidden_layers=2,
                            output_size=10)
     inputs = torch.randn(1000, 784)
     print("inputs size", inputs.size())

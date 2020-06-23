@@ -105,6 +105,8 @@ def query_model(model: nn.Module, query_dataloader: DataLoader, device: torch.de
         # TODO: calculating the alphas at the proper step?
         # TODO: logger the alphas
         _, sgd_noise = get_sgd_noise(model, device, optimizer, query_dataloader)
+        if not ii:
+            print('sgd_noise shape', sgd_noise.shape)
         noise_norm = torch.norm(sgd_noise, dim=1)
         alpha_hat = estimate_alpha(sgd_noise)
         noise_norms.append(noise_norm)
