@@ -83,12 +83,12 @@ def query():
         model = nn.DataParallel(model)
     model.to(device)
     norms, alphas = query_model(model=model, query_dataloader=query_dataloader,
-                                device=device, optimizer=optimizer, norm_sample_count=10)
+                                device=device, optimizer=optimizer, norm_sample_count=1)
     print(len(norms), len(alphas))
     print(norms[0].shape, alphas[0].shape)
 
 
 if __name__ == '__main__':
-    pretrain()
-    # query()
+    # pretrain()
+    query()
 

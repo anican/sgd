@@ -187,6 +187,8 @@ def restore_model(file_path: str):
     if arch == 'mlp' and dataset == 'mnist':
         model: nn.Module = MLP(input_size=784, hidden_size=hidden_size,
                                num_hidden_layers=hidden_layers, batch_norm=batch_norm)
+    elif arch == 'alexnet':
+        model: nn.Module = AlexNet()
     else:
         model: nn.Module = MLP(hidden_size=hidden_size,
                                num_hidden_layers=hidden_layers, batch_norm=batch_norm)
